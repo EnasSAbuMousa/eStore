@@ -1,6 +1,6 @@
 <?php
-
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get(uri: '/', action: function () {
@@ -29,32 +29,28 @@ Route::post(uri: '/about', action: function () {
      return view(view: 'about', data: compact('name' , 'departments'));
 });
 
-Route::get(uri: 'tasks' , action: function(){
-     $tasks = DB::table('tasks')->get();
-     return view('tasks', compact('tasks'));
-});
+Route::get(uri: 'tasks' , action: [TaskController::class, 'index']);
 
-Route::post(uri: '/create', action: function () {
-    $task_name= $_POST['name'];
-    DB::table('tasks')->insert(['name' => $task_name]);
-    return redirect()->back();
-});
+Route::post(uri: '/create', action: [TaskController::class,'create']);
 
-Route::post(uri: '/delete/{id}', action: function ($id) {
-    DB::table('tasks')->where('id' , $id)->delete();
-    return redirect()->back();
-});
+Route::post(uri: '/delete/{id}', action: [TaskController::class,'destroy']);
 
-Route::post(uri: '/edit/{id}', action: function ($id) {
-   $task = DB::table('tasks')->where('id' , $id)->first();
-   $tasks = DB::table('tasks')->get();
-    return view('tasks', compact('task','tasks'));
-});
+Route::post(uri: '/edit/{id}', action: [TaskController::class, 'edit' ]);
 
-Route::post(uri:'update', action: function(){
-    $id = $_POST['id'];
-    DB::table('tasks')->where('id' , '=', $id)->update(['name' => $_POST['name']]);
-    return redirect('tasks');
+Route::post(uri:'update', action: [TaskController::class,'update']);
+
+Route::get(uri: 'users' , action: [UserController::class, 'index']);
+
+Route::post(uri: '/create', action: [UserController::class,'create']);
+
+Route::post(uri: '/delete/{id}', action: [UserController::class,'destroy']);
+
+Route::post(uri: '/edit/{id}', action: [UserController::class, 'edit' ]);
+
+Route::post(uri:'update', action: [UserController::class,'update']);
+
+Route::get('app',function(){
+    return view('layouts.app');
 });
 
 
