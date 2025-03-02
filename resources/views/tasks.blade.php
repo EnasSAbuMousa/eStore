@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <!-- Update Task Form -->
-                    <form action="{{url('update')}}" method="POST">
+                    <form action="{{url('updatee')}}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value= "{{$task->id}}">
                         <!-- Task Name -->
@@ -34,7 +34,7 @@
                 </div>
                 <div class="card-body">
                     <!-- New Task Form -->
-                    <form action="create" method="POST">
+                    <form action="createe" method="POST">
                         @csrf
                         <!-- Task Name -->
                         <div class="mb-3">
@@ -71,13 +71,13 @@
                             <tr>
                                 <td>{{$task->name}}</td>
                                 <td>
-                                    <form action="/delete/{{$task->id}}" method="POST" class="d-inline">
+                                    <form action="/deletee/{{$task->id}}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="btn btn-danger">
                                             <i class="fa fa-trash me-2"></i>Delete
                                         </button>
                                     </form>
-                                    <form action="/edit/{{$task->id}}" method="POST" class="d-inline">
+                                    <form action="/editt/{{$task->id}}" method="POST" class="d-inline">
                                         @csrf
                                         <button type="submit" class="btn btn-info">
                                             <i class="fa fa-info me-2"></i>Edit

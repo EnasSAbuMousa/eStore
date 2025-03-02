@@ -31,13 +31,14 @@ Route::post(uri: '/about', action: function () {
 
 Route::get(uri: 'tasks' , action: [TaskController::class, 'index']);
 
-Route::post(uri: '/create', action: [TaskController::class,'create']);
+Route::post(uri: '/createe', action: [TaskController::class,'createe']);
 
-Route::post(uri: '/delete/{id}', action: [TaskController::class,'destroy']);
+Route::post(uri: '/deletee/{id}', action: [TaskController::class,'destroyy']);
 
-Route::post(uri: '/edit/{id}', action: [TaskController::class, 'edit' ]);
+Route::post(uri: '/editt/{id}', action: [TaskController::class, 'editt' ]);
 
-Route::post(uri:'update', action: [TaskController::class,'update']);
+Route::post(uri:'updatee', action: [TaskController::class,'updatee']);
+
 
 Route::get(uri: 'users' , action: [UserController::class, 'index']);
 
